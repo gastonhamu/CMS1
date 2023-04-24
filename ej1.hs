@@ -13,15 +13,19 @@ sumaMenosQueMax (a,b,c) | maximo(a,b,c) > minimo (a,b,c) + medio(a,b,c) = True
 
 maximo:: (Int,Int,Int) -> Int
 maximo (a,b,c) | a >= b && a >= c = a
-            | b >= a && b >= c = b
-            | otherwise= c
+               | b >= a && b >= c = b
+               | otherwise= c
 
 minimo:: (Int,Int,Int) -> Int
 minimo (a,b,c) | a <= b && a <= c = a
-            | b <= a && b <= c = b
-            | otherwise= c
+               | b <= a && b <= c = b
+               | otherwise= c
+
+minimo2:: (Int,Int) -> Int
+minimo2 (a,b) | a <= b = a
+              | otherwise= b            
 
 medio:: (Int,Int,Int) -> Int
-medio (a,b,c) | a < maximo(a,b,c) && a > minimo(a,b,c) = a
-              | b < maximo(a,b,c) && b > minimo(a,b,c) = b
-              | otherwise= c
+medio (a,b,c)| minimo(a,b,c) == a = minimo2 (b, c)
+             | minimo(a,b,c) == b = minimo2 (a, c)
+             | minimo(a,b,c) == c = minimo2 (b, a)
